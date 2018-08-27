@@ -1,7 +1,8 @@
 #!/bin/sh
 
 PIPELINE_CONFIG_PATH=${HOME}/detection_models/models/ssdlite_mobilenet_v2_coco.config
-MODEL_DIR=${HOME}/detection_models/models/train
+MODEL_DIR=/mnt/Data/Data/coco_dataset/model_zoo/ssdlite_mobilenet_v2_coco_2018_05_09/
+# MODEL_DIR=/mnt/Data/Data/coco_dataset/model_zoo/mobilenet_v2_1.0_224/
 NUM_TRAIN_STEPS=50000
 NUM_EVAL_STEPS=2000
 
