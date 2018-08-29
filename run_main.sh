@@ -10,16 +10,35 @@ else
 fi
 
 MODEL_ROOT_DIR=/mnt/Data/Data/coco_dataset/model_zoo
+TRAIN_FROM_SCRATCH=True
 
 if [[ ${MODEL} == 'faster_resnet50' ]]; then
     PIPELINE_CONFIG_PATH=${HOME}/detection_models/models/faster_rcnn_resnet50_coco.config
-    MODEL_DIR=${MODEL_ROOT_DIR}/faster_rcnn_resnet50_coco_2018_01_28/
+    if [[ ${TRAIN_FROM_SCRATCH} ]]; then
+        MODEL_DIR=${MODEL_ROOT_DIR}/faster_rcnn_resnet50_coco_scratch/
+        rm -rf ${MODEL_ROOT_DIR}/faster_rcnn_resnet50_coco_scratch/*
+    else
+        MODEL_DIR=${MODEL_ROOT_DIR}/faster_rcnn_resnet50_coco_2018_01_28/
+    fi
+
 elif [[ ${MODEL} == 'faster_resnet101' ]]; then
     PIPELINE_CONFIG_PATH=${HOME}/detection_models/models/faster_rcnn_resnet101_coco.config
-    MODEL_DIR=${MODEL_ROOT_DIR}/faster_rcnn_resnet101_coco_2018_01_28/
+    if [[ ${TRAIN_FROM_SCRATCH} ]]; then
+        MODEL_DIR=${MODEL_ROOT_DIR}/faster_rcnn_resnet101_coco_scratch/
+        rm -rf ${MODEL_ROOT_DIR}/faster_rcnn_resnet101_coco_scratch/*
+    else
+        MODEL_DIR=${MODEL_ROOT_DIR}/faster_rcnn_resnet101_coco_2018_01_28/
+    fi
+
 elif [[ ${MODEL} == 'ssdlite_mbv2' ]]; then
     PIPELINE_CONFIG_PATH=${HOME}/detection_models/models/ssdlite_mobilenet_v2_coco.config
-    MODEL_DIR=${MODEL_ROOT_DIR}/ssdlite_mobilenet_v2_coco_2018_05_09/
+    if [[ ${TRAIN_FROM_SCRATCH} ]]; then
+        MODEL_DIR=${MODEL_ROOT_DIR}/ssdlite_mobilenet_v2_coco_scratch/
+        rm -rf ${MODEL_ROOT_DIR}/ssdlite_mobilenet_v2_coco_scratch/*
+    else
+        MODEL_DIR=${MODEL_ROOT_DIR}/ssdlite_mobilenet_v2_coco_2018_05_09/
+    fi
+
 else
     echo 'Invalid model input'
 fi
